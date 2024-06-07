@@ -47,8 +47,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: sans-serif; 
-    color: black;
-    background-color: #f3f3f3;
+    color: white;
+    background-color:black;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -61,19 +61,6 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Container = styled.div`
-  @media screen and (min-width: 320px) {
-    width: 100%;
-    padding: 0 20px;
-    margin: 90px auto;
-  }
-
-  @media screen and (min-width: 768px) {
-    padding: 0 32px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    max-width: 1184px;
-    padding: 0 132px;
-    margin: 150px auto 100px auto;
-  }
+  padding: 100px 132px;
+  margin: 0 auto;
 `;
