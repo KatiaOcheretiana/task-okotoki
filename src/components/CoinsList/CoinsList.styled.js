@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
 export const List = styled.ul`
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 10px;
+  width: 100%;
+  background-color: rgba(48, 48, 48, 0.4);
 `;

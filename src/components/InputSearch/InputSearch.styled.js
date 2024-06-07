@@ -10,7 +10,7 @@ export const LabelField = styled.label`
     left: -15px;
     height: 1px;
     margin-right: 32px;
-    width: 111%;
+    width: 105%;
 
     background-color: rgba(251, 251, 251, 0.4);
   }
@@ -23,12 +23,12 @@ export const IconSearch = styled.svg`
   height: 20px;
 
   top: 0;
-  left: 10px;
+  left: 20px;
   position: absolute;
 `;
 
 export const Input = styled.input`
-  padding: 15px 35px;
+  padding: 15px 45px;
   background-color: transparent;
   border: none;
 
@@ -46,7 +46,7 @@ export const IconClose = styled.svg`
   height: 20px;
 
   top: 0;
-  right: 10px;
+  right: 20px;
   position: absolute;
 
   cursor: pointer;
