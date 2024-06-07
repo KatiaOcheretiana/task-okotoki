@@ -1,5 +1,11 @@
+import { Container } from "./styles/GlobalStyle";
+
 function App() {
-  return <div>Hello</div>;
+  return (
+    <div>
+      <Container>He</Container>
+    </div>
+  );
 }
 
 export default App;
