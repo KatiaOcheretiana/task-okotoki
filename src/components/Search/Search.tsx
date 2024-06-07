@@ -1,5 +1,6 @@
 import { FeatureWraper, Text } from "./Search.styled";
 import { useEffect, useState } from "react";
+import Fuse from "fuse.js";
 
 import InputSearch from "../InputSearch/InputSearch";
 import CoinsList from "../CoinsList/CoinsList";
@@ -13,25 +14,31 @@ interface SearchProps {
 export default function Search({ coins }: SearchProps) {
   const [isActive, setIsActive] = useState(false);
   const [query, setQuery] = useState("");
-  const [filteredCoins, setFilteredCoins] = useState(coins);
+  const [filteredCoins, setFilteredCoins] = useState<string[]>(coins);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    if (filter === "favorite") {
-      const favoriteItems = JSON.parse(
-        localStorage.getItem("favorites") || "[]"
-      );
+    const favoriteItems: string[] = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
+    );
+    let filtered: string[];
 
-      setFilteredCoins(
-        favoriteItems.filter((item: string) =>
-          item.includes(query.toUpperCase())
-        )
-      );
+    if (filter === "favorite") {
+      filtered = favoriteItems;
     } else {
-      const coinsBySearch = coins.filter((item) =>
-        item.includes(query.toUpperCase())
-      );
-      setFilteredCoins(coinsBySearch);
+      filtered = coins;
+    }
+
+    if (query) {
+      const fuse = new Fuse<string>(filtered, {
+        keys: [],
+        threshold: 0.3,
+      });
+
+      const result = fuse.search(query);
+      setFilteredCoins(result.map(({ item }) => item));
+    } else {
+      setFilteredCoins(filtered);
     }
   }, [query, coins, filter]);
 
@@ -47,7 +54,7 @@ export default function Search({ coins }: SearchProps) {
           <InputSearch setQuery={setQuery} query={query} />
           <Filter setFilter={setFilter} filter={filter} />
           {filteredCoins.length > 0 ? (
-            <CoinsList coins={filteredCoins} />
+            <CoinsList coins={filteredCoins} filter={filter} />
           ) : (
             <Text>Nothing found</Text>
           )}

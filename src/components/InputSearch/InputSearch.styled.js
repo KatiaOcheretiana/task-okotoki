@@ -7,10 +7,10 @@ export const LabelField = styled.label`
     position: absolute;
     content: "";
     bottom: -15px;
-    left: -15px;
+    left: 0;
     height: 1px;
     margin-right: 32px;
-    width: 105%;
+    width: 100%;
 
     background-color: rgba(251, 251, 251, 0.4);
   }

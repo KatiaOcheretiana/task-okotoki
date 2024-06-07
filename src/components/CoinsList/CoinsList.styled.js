@@ -3,8 +3,27 @@ import styled from "styled-components";
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+
   padding: 10px 10px;
   width: 100%;
-  background-color: rgba(48, 48, 48, 0.4);
+`;
+
+export const Wrapper = styled.div`
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #f1f1f1;
+    border-radius: 20px;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: #f1f1f1 transparent;
 `;

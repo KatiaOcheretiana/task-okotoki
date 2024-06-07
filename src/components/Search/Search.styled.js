@@ -6,7 +6,6 @@ export const FeatureWraper = styled.div`
   left: -170px;
   width: 300px;
   height: 400px;
-  overflow-y: scroll;
 
   border: 1px solid #b0b0b0;
   border-radius: 10px;
