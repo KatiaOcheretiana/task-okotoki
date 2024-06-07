@@ -3,8 +3,6 @@ name: Build and deploy to GitHub Pages
 on:
   push:
     branches: [main]
-env:
-  REACT_APP_FIREBASE_KEY: ${{secrets.REACT_APP_FIREBASE_KEY}}
 
 jobs:
   build-and-deploy:
