@@ -13,6 +13,7 @@ export const Button = styled.button<ButtonProps>`
   border-radius: 10px;
   font-size: 18px;
   line-height: 1.5;
+  user-select: none;
   background-color: ${(props) => (props.isActive ? "#484848" : "transparent")};
   border: ${(props) =>
     props.isActive ? "2px solid #B0B0B0" : "2px solid transparent"};

@@ -6,10 +6,11 @@ interface FilterProps {
   filter: string;
 }
 
-export default function Filter({ setFilter, filter }: FilterProps) {
+export const Filter = ({ setFilter, filter }: FilterProps) => {
   return (
     <FilterBox>
       <FilterItem
+        disabled={filter === "favorite"}
         isActive={filter === "favorite"}
         onClick={() => setFilter("favorite")}
       >
@@ -18,9 +19,13 @@ export default function Filter({ setFilter, filter }: FilterProps) {
         </Icon>
         <p>FAVORITES</p>
       </FilterItem>
-      <FilterItem isActive={filter === "all"} onClick={() => setFilter("all")}>
+      <FilterItem
+        disabled={filter === "all"}
+        isActive={filter === "all"}
+        onClick={() => setFilter("all")}
+      >
         <p>ALL COINS</p>
       </FilterItem>
     </FilterBox>
   );
-}
+};

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Item = styled.li`
   display: flex;
+  align-items: center;
   gap: 10px;
   padding: 5px 10px;
   border-radius: 10px;

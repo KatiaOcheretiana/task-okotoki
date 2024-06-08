@@ -67,6 +67,7 @@ export default function Search({ coins }: SearchProps) {
           filteredCoins={filteredCoins}
           buttonRef={buttonRef}
           onClose={() => setIsActive(false)}
+          setFilteredCoins={setFilteredCoins}
         />
       )}
     </div>

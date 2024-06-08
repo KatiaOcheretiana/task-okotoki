@@ -11,10 +11,15 @@ interface FilterItemProps {
   isActive: boolean;
 }
 
-export const FilterItem = styled.li<FilterItemProps>`
+export const FilterItem = styled.button<FilterItemProps>`
   display: flex;
   gap: 8px;
-  cursor: pointer;
+  background-color: black;
+  border: none;
+  color: white;
+
+  user-select: none;
+
   font-size: 16px;
 
   font-weight: ${(props) => (props.isActive ? "600 " : "400")};
@@ -26,8 +31,6 @@ export const FilterItem = styled.li<FilterItemProps>`
   &:focus {
     background-color: rgb(48, 48, 48);
   }
-
-  cursor: pointer;
 
   transition: all 0.5s ease;
 `;

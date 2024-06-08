@@ -6,7 +6,7 @@ interface InputSearchProps {
   query: string;
 }
 
-export default function InputSearch({ setQuery, query }: InputSearchProps) {
+export const InputSearch = ({ setQuery, query }: InputSearchProps) => {
   return (
     <LabelField>
       <Input
@@ -25,4 +25,4 @@ export default function InputSearch({ setQuery, query }: InputSearchProps) {
       )}
     </LabelField>
   );
-}
+};

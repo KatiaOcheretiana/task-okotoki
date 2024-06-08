@@ -5,10 +5,15 @@ import { Button, Icon, Item } from "./CoinsList.styled";
 
 interface CoinsListProps {
   coins: string[];
+  setFilteredCoins: (filteredCoins: string[]) => void;
   filter: string;
 }
 
-export default function CoinsList({ coins, filter }: CoinsListProps) {
+export const CoinsList = ({
+  coins,
+  setFilteredCoins,
+  filter,
+}: CoinsListProps) => {
   const [favoriteArray, setFavoriteArray] = useState<string[]>([]);
 
   useEffect(() => {
@@ -27,6 +32,10 @@ export default function CoinsList({ coins, filter }: CoinsListProps) {
 
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     setFavoriteArray(updatedFavorites);
+
+    if (filter === "favorite" && !updatedFavorites.includes(item)) {
+      setFilteredCoins(coins.filter((coin) => coin !== item));
+    }
   };
 
   const rowHeight = 33.5;
@@ -59,4 +68,4 @@ export default function CoinsList({ coins, filter }: CoinsListProps) {
       )}
     />
   );
-}
+};
