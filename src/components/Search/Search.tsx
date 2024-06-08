@@ -1,11 +1,8 @@
-import { FeatureWraper, Text } from "./Search.styled";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Fuse from "fuse.js";
-
-import InputSearch from "../InputSearch/InputSearch";
-import CoinsList from "../CoinsList/CoinsList";
-import SearchButton from "../SearchButton/SearchButton";
-import Filter from "../Filter/Filter";
+import { Popup } from "../Popup/Popup";
+import { Button, Icon } from "./Search.styled";
+import sprite from "../../icons/sprite.svg";
 
 interface SearchProps {
   coins: string[];
@@ -16,6 +13,7 @@ export default function Search({ coins }: SearchProps) {
   const [query, setQuery] = useState("");
   const [filteredCoins, setFilteredCoins] = useState<string[]>(coins);
   const [filter, setFilter] = useState("all");
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const favoriteItems: string[] = JSON.parse(
@@ -43,22 +41,27 @@ export default function Search({ coins }: SearchProps) {
   }, [query, coins, filter]);
 
   return (
-    <div style={{ position: "relative", width: "130px", margin: "0 auto" }}>
-      <SearchButton
+    <div style={{ width: "130px", margin: "0 auto", position: "relative" }}>
+      <Button
+        ref={buttonRef}
         isActive={isActive}
         onClick={() => setIsActive(!isActive)}
-      />
+      >
+        <Icon>
+          <use href={sprite + "#icon-codicon-search"} />
+        </Icon>
+        <p>SEARCH</p>
+      </Button>
 
-      {isActive && (
-        <FeatureWraper>
-          <InputSearch setQuery={setQuery} query={query} />
-          <Filter setFilter={setFilter} filter={filter} />
-          {filteredCoins.length > 0 ? (
-            <CoinsList coins={filteredCoins} filter={filter} />
-          ) : (
-            <Text>Nothing found</Text>
-          )}
-        </FeatureWraper>
+      {isActive && buttonRef.current && (
+        <Popup
+          query={query}
+          setQuery={setQuery}
+          filter={filter}
+          setFilter={setFilter}
+          filteredCoins={filteredCoins}
+          buttonRef={buttonRef}
+        />
       )}
     </div>
   );

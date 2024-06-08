@@ -1,29 +1,28 @@
 import styled from "styled-components";
 
-export const List = styled.ul`
+export const Item = styled.li`
   display: flex;
-  flex-direction: column;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
 
-  padding: 10px 10px;
-  width: 100%;
+  &:hover,
+  &:focus {
+    background-color: rgb(80, 80, 80);
+  }
+
+  cursor: pointer;
+
+  transition: all 0.5s ease;
 `;
 
-export const Wrapper = styled.div`
-  overflow-y: auto;
+export const Button = styled.button`
+  background-color: transparent;
+  border: none;
+`;
 
-  &::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #f1f1f1;
-    border-radius: 20px;
-  }
-
-  scrollbar-width: thin;
-  scrollbar-color: #f1f1f1 transparent;
+export const Icon = styled.svg`
+  fill: white;
+  height: 18px;
+  width: 18px;
 `;

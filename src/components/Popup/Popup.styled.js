@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FeatureWraper = styled.div`
-  position: absolute;
+  /* position: absolute; */
   top: 100%;
   left: -170px;
   width: 300px;
