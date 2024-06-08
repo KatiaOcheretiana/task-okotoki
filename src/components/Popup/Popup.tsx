@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef, RefObject } from "react";
 import ReactDOM from "react-dom";
 import { FeatureWraper, Text } from "./Popup.styled";
 import InputSearch from "../InputSearch/InputSearch";
 import CoinsList from "../CoinsList/CoinsList";
 import Filter from "../Filter/Filter";
+import { useClickOutside } from "../../useClickOutside";
 
 interface PopupProps {
   query: string;
@@ -11,7 +12,8 @@ interface PopupProps {
   filter: string;
   setFilter: (filter: string) => void;
   filteredCoins: string[];
-  buttonRef: React.RefObject<HTMLButtonElement>;
+  buttonRef: RefObject<HTMLButtonElement>;
+  onClose: () => void;
 }
 
 export const Popup = ({
@@ -21,9 +23,13 @@ export const Popup = ({
   setFilter,
   filteredCoins,
   buttonRef,
+  onClose,
 }: PopupProps) => {
   const [portalElement] = useState(() => document.createElement("div"));
   const [position, setPosition] = useState({ top: 0, left: 0 });
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(popupRef, onClose);
 
   useEffect(() => {
     const updatePosition = () => {
@@ -62,7 +68,7 @@ export const Popup = ({
   };
 
   return ReactDOM.createPortal(
-    <FeatureWraper style={portalStyle}>
+    <FeatureWraper ref={popupRef} style={portalStyle}>
       <InputSearch setQuery={setQuery} query={query} />
       <Filter setFilter={setFilter} filter={filter} />
       {filteredCoins.length > 0 ? (

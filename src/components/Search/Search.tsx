@@ -16,6 +16,11 @@ export default function Search({ coins }: SearchProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    setQuery("");
+    setFilter("all");
+  }, [isActive]);
+
+  useEffect(() => {
     const favoriteItems: string[] = JSON.parse(
       localStorage.getItem("favorites") || "[]"
     );
@@ -61,6 +66,7 @@ export default function Search({ coins }: SearchProps) {
           setFilter={setFilter}
           filteredCoins={filteredCoins}
           buttonRef={buttonRef}
+          onClose={() => setIsActive(false)}
         />
       )}
     </div>
