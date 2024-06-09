@@ -38,7 +38,7 @@ export const CoinsList = ({
     }
   };
 
-  const rowHeight = 33.5;
+  const rowHeight = 32;
   const visibleRows = 9;
   const bufferRows = 5;
 

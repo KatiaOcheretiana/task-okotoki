@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   overflow-y: auto;
-  padding: 0 15px;
+  padding: 0 5px;
 
   &::-webkit-scrollbar {
     width: 12px;

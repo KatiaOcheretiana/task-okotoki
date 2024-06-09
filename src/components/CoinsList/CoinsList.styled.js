@@ -4,7 +4,7 @@ export const Item = styled.li`
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 5px 10px;
+  padding: 7px 10px;
   border-radius: 10px;
 
   &:hover,
@@ -20,6 +20,8 @@ export const Item = styled.li`
 export const Button = styled.button`
   background-color: transparent;
   border: none;
+  display: flex;
+  align-items: center;
 `;
 
 export const Icon = styled.svg`

@@ -1,9 +1,18 @@
 import { useState, useEffect, useRef, RefObject } from "react";
 import ReactDOM from "react-dom";
-import { FeatureWraper, Text } from "./Popup.styled";
-import { InputSearch } from "../InputSearch/InputSearch";
+import {
+  FeatureWraper,
+  FilterBox,
+  FilterItem,
+  Icon,
+  IconClose,
+  IconSearch,
+  Input,
+  LabelInputField,
+  Text,
+} from "./Popup.styled";
+import sprite from "../../icons/sprite.svg";
 import { CoinsList } from "../CoinsList/CoinsList";
-import { Filter } from "../Filter/Filter";
 import { useClickOutside } from "../../useClickOutside";
 
 interface PopupProps {
@@ -31,7 +40,7 @@ export const Popup = ({
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const popupRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside(popupRef, onClose);
+  useClickOutside(popupRef, buttonRef, onClose);
 
   useEffect(() => {
     const updatePosition = () => {
@@ -71,8 +80,44 @@ export const Popup = ({
 
   return ReactDOM.createPortal(
     <FeatureWraper ref={popupRef} style={portalStyle}>
-      <InputSearch setQuery={setQuery} query={query} />
-      <Filter setFilter={setFilter} filter={filter} />
+      {/* Input search */}
+      <LabelInputField>
+        <Input
+          type="text"
+          placeholder="Search..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <IconSearch>
+          <use href={sprite + "#icon-codicon-search"} />
+        </IconSearch>
+        {query && (
+          <IconClose onClick={() => setQuery("")}>
+            <use href={sprite + "#icon-codicon--close"} />
+          </IconClose>
+        )}
+      </LabelInputField>
+      {/* Filter by FAVORITE OR ALL */}
+      <FilterBox>
+        <FilterItem
+          disabled={filter === "favorite"}
+          isActive={filter === "favorite"}
+          onClick={() => setFilter("favorite")}
+        >
+          <Icon>
+            <use href={sprite + "#icon-codicon--star-full"} />
+          </Icon>
+          <p>FAVORITES</p>
+        </FilterItem>
+        <FilterItem
+          disabled={filter === "all"}
+          isActive={filter === "all"}
+          onClick={() => setFilter("all")}
+        >
+          <p>ALL COINS</p>
+        </FilterItem>
+      </FilterBox>
+
       {filteredCoins.length > 0 ? (
         <CoinsList
           coins={filteredCoins}

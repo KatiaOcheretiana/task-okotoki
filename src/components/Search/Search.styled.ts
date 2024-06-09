@@ -9,7 +9,7 @@ export const Button = styled.button<ButtonProps>`
   gap: 10px;
   align-items: center;
   color: white;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
   font-size: 18px;
   line-height: 1.5;
@@ -29,6 +29,7 @@ export const Button = styled.button<ButtonProps>`
 
 export const Icon = styled.svg`
   fill: white;
-  width: 20px;
-  height: 20px;
+  stroke: white;
+  width: 18px;
+  height: 18px;
 `;
